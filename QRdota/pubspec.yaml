@@ -1,0 +1,17 @@
+name: 'QRdota'
+version: 0.0.1
+#author: <your name> <email@example.com>
+#homepage: https://www.example.com
+environment:
+  sdk: '>=1.0.0 <2.0.0'
+dependencies:
+  args: any
+  bootjack: any
+  browser: any
+  dquery: any
+  html5lib: any
+  stream: any
+transformers:
+- $dart2js:
+    checked: true
+    minify: true
