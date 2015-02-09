@@ -5,11 +5,13 @@ version: 0.0.1
 environment:
   sdk: '>=1.0.0 <2.0.0'
 dependencies:
+  access: any
   args: any
   bootjack: any
   browser: any
   dquery: any
   html5lib: any
+  postgresql2: any
   stream: any
 transformers:
 - $dart2js:
