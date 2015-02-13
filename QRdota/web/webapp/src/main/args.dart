@@ -21,10 +21,9 @@ Args _parseArgs(List<String> arguments) {
     ..addFlag("help", abbr: 'h', negatable: false, help: "Display this message")
     ..addOption("address", help: "Specify the internet address to listen.")
     ..addOption("port", help: "Specify the socket port to listen. Default: 8080")
-    ..addOption("db-uri", help: "Specify the URI of the database. "
-        "Default: $_DEFAULT_DB_URI")
-    ..addOption("pool-size", help: "Specify the maximal number of the database connection pool. Default: 200");
-
+    ..addOption("db-uri", help: "Specify the URI of the database. Default: $_DEFAULT_DB_URI")
+    ..addOption("pool-size", help: "Specify the maximal number of the database connection pool."
+                                   " Default: 200");
   var args;
   try {
     args = parser.parse(arguments);
@@ -36,7 +35,7 @@ Args _parseArgs(List<String> arguments) {
   if (args['help']) {
     print("Usage: dart ${Platform.script.toFilePath()} [<flags>]");
     print("\nOptions:");
-    print(parser.getUsage());
+    print(parser.usage);
     return null;
   }
 

@@ -4,22 +4,20 @@ import "dart:async";
 import "dart:html" hide Comment, Notification;
 import "dart:convert" show JSON;
 
-Future sendAjax(String uri, json) {
-  final Completer<HttpRequest> completer = new Completer();
-  final HttpRequest xhr = new HttpRequest();
-  xhr
-    ..open("POST", uri, async: true)
-    ..onLoad.listen((evt) {
-      final int status = xhr.status;
-      if (status >= 200 && status < 300) {
-        final String val = xhr.responseText.trim();
-        completer.complete(val.isEmpty ? null: JSON.decode(val));
-      } else {
-        completer.completeError(status);
-      }
-    })
-    ..onError.listen(completer.completeError)
-    ..send(JSON.encode(json));
+import "app_info.dart" show appInfo;
+import "util.dart";
+import "../generic/command.dart";
 
-  return completer.future;
-}
+part "src/bridge/request_write.dart";
+part "src/bridge/response.dart";
+
+///The current revision of the game (never null).
+int currentRevision;
+///The current scope (i.e. user id).
+String currentScope;
+///The current page of the game, used to retrieve data periodically.
+String currentPage;
+///Datetime of last retrieved notification.
+DateTime lastNotif;
+
+

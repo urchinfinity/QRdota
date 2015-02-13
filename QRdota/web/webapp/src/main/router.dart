@@ -5,25 +5,28 @@ part of main;
 
 DefaultRouter _getRouter() => new DefaultRouter(
   uriMapping: <String, RequestHandler> {
-    /*
-    "/": authen,
-    "/stats(/.*)?": statistics,
-    "/rank(/.*)?": userRank,
-    "/ref(/.*)?": referrer,
+    "/": home,
+    "/m(/.*)?": map,
+    "/usr(/.*)?": userProfile,
+    "/lat(/.*)?": lattice,
+    "/frnds(/.*)?": friendList,
+    "/frnd(/.*)?": friend,
+    "/items(/.*)?": itemList,
+    "/item(/.*)?": item,
+    "/stories(/.*)?": storyList,
+    "/story(/.*)?": story,
+    "/magic(/.*)?": magicbook,
+    "/notif(/.*)?": notification,
+    "/menu(/.*)?": menu,
+    "/setting(/.*)?": setting,
     
-    "/qc": queryCount,
-    "/qs": querySignin,
-    "/gsc": getStatsCsv,
-    "/grc": getRankCsv,
+    "/q": query,
     
-    "/s/.*": _static,
-    "/tools": dbTools,
-    "/rebuild": rebuild,
-    "/update": update,
-    "/flush": flush,
-    "/init": init,
-    
-     */
+    "/r/login(/)?": login,
+    "/r/logout(/)?": app.security.logout,
+
+    "/invite(/)?": invite,
+    "/send(/.*)?": send,
   },
   protectRSP: false);
 
