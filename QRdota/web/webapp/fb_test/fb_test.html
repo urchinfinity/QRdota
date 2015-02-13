@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fb_test</title>
+  </head>
+ 
+  <body>   
+    <script>
+    
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '522857694518715',
+          xfbml      : true,
+          version    : 'v2.2'
+        });
+  
+        console.log('abc');
+        
+        window.fbApp = {
+            id: '522857694518715',
+            scope: 'public_profile,user_friends,email',
+            LoginRedirectUrl: document.URL,//'http://cmlab.csie.ntu.edu.tw/~weitang114',
+            getLoginUrl: function () {  //取得Facebook授權頁面網址
+                var login_url = "https://www.facebook.com/dialog/oauth?";
+                login_url += ("client_id=" + this.id);
+                login_url += ("&redirect_uri=" + this.LoginRedirectUrl);
+                login_url += ("&scope=" + this.scope);
+                return login_url;
+            },
+        };
+        
+        //console.log('1111' + window.fbApp.getLoginUrl());
+        
+        FB.getLoginStatus(function(response) {
+         if (response.status === 'connected') {
+            console.log('Logged in.');
+            testJsFunc(response.authResponse);
+          }
+          else {
+            console.log('tttt');
+            window.location = window.fbApp.getLoginUrl();
+          }
+         console.log('3434343434');
+        });
+      };
+    
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/zh_TW/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
+    
+    <div
+      class="fb-like"
+      data-share="true"
+      data-width="450"
+      data-show-faces="true">
+    </div>
+    
+    <button id="btn">click</button>
+    <button id="btn_invite">Invite</button>
+    <div>
+      <ul id="friend_list">
+      
+      </ul>
+    </div>
+    
+    <p id="text"></p>
+    <script type="application/dart" src="fb_test.dart"></script>
+    <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
+    <script src="packages/browser/dart.js"></script>
+    <script src="fb_test.js"></script>
+  </body>
+</html>
